@@ -28,7 +28,7 @@ public class Bullet : MonoBehaviour
         else
         {
             Debug.Log("다른 물체와 충돌");
-            Destroy(gameObject);
+            // Destroy(gameObject);
         }
     }
 
