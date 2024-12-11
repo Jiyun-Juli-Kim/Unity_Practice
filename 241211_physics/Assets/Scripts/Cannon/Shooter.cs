@@ -8,7 +8,7 @@ public class Shooter : MonoBehaviour
     private Rigidbody _rigidBody;
 
     [SerializeField] private Transform _muzzleTransform;
-    [SerializeField] private GameObject _bullet;
+    [SerializeField] private Bullet _bullet;
     
     private void Update()
     {
@@ -20,8 +20,7 @@ public class Shooter : MonoBehaviour
 
     private void CannonShot()
     {
-        GameObject instance = Instantiate(_bullet, _muzzleTransform.position, _muzzleTransform.rotation);
-        Bullet bullet = instance.GetComponent<Bullet>();
+        Bullet bullet = Instantiate(_bullet, _muzzleTransform.position, _muzzleTransform.rotation);
         bullet.SetSpeed(_bulletSpeed*_muzzleTransform.forward);
     }
 }
