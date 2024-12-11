@@ -12,11 +12,11 @@ GameObject:
   - component: {fileID: 3807016282132307396}
   - component: {fileID: 4082892046887152725}
   - component: {fileID: 2547052272446696158}
-  - component: {fileID: 4660904835145795634}
   - component: {fileID: 4227686212941888560}
+  - component: {fileID: 759513774308892358}
   m_Layer: 0
-  m_Name: CanonBall
-  m_TagString: Untagged
+  m_Name: Bullet
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,20 +99,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4660904835145795634
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2781036665103523515}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8476bb1c781ad7c4a9a658135463157e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _deactiveTime: 2
-  _shotForce: 10
 --- !u!54 &4227686212941888560
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -129,3 +115,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &759513774308892358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2781036665103523515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c16cfa1519b818d488b539946b351f71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 4227686212941888560}
