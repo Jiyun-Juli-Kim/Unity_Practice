@@ -4,21 +4,18 @@ using UnityEngine;
 
 public class CubeManager : MonoBehaviour
 {
-    [SerializeField] GameObject cube;
+    [SerializeField] GameObject _cubePrefab;
 
     void Update()
     {
-        Func1();
+        Spawn();
     }
 
-    void Func1()
+    void Spawn()
     {
         if (Input.GetKeyDown(KeyCode.A))
         {
-            Instantiate(cube);
+            Instantiate(_cubePrefab);
         }
-
-
     }
-
 }
