@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class m_Bullet : MonoBehaviour
 {
-    [SerializeField] private Rigidbody rb;
-    
+    private Rigidbody rb;
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
 }

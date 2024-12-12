@@ -8,18 +8,7 @@ public class m_Shooter : MonoBehaviour
     [SerializeField] private Transform _muzzleTransform;
     [SerializeField] private GameObject _bulletPrefab;
 
-
-    private void Awake()
-    {
-        
-    }
-
-    void Update()
-    {
-        Init();
-    }
-
-    private void Init()
+    private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -29,9 +18,8 @@ public class m_Shooter : MonoBehaviour
 
     private void Shoot()
     {
-        GameObject instance = Instantiate(_bulletPrefab, _muzzleTransform.position, _muzzleTransform.rotation);
-        Bullet bullet = instance.GetComponent<Bullet>();
-        bullet.GetComponent<Rigidbody>().AddForce(Vector3.up * _shootSpeed * Time.deltaTime, ForceMode.Impulse);
+        GameObject bullet = Instantiate(_bulletPrefab, _muzzleTransform.position, _muzzleTransform.rotation);
+        bullet.GetComponent<Rigidbody>().AddForce(_muzzleTransform.forward * _shootSpeed, ForceMode.Impulse);
     }
 
 }
