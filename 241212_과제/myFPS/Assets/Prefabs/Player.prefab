@@ -380,7 +380,7 @@ MonoBehaviour:
   _interpolation: 1.74
   _weaponPos: {fileID: 5746178826616186311}
   _gunPrefab: {fileID: 856346646880701658, guid: 230a1585100323f4c8f3c8b425a12b5c, type: 3}
-  _grenadePrefab: {fileID: 1905206297806786010, guid: ca650d7ff17bd1946a56b43fb72590a2, type: 3}
+  _grenadePrefab: {fileID: 7775835859629922835, guid: ca650d7ff17bd1946a56b43fb72590a2, type: 3}
 --- !u!54 &5746178827357459973
 Rigidbody:
   m_ObjectHideFlags: 0

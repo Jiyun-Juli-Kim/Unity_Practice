@@ -21,7 +21,13 @@ public class Bullet : MonoBehaviour
     {
         if (other.gameObject.tag == "Wall")
         { 
-            Destroy(this.gameObject);
+            Destroy(gameObject);
+        }
+
+        if (other.gameObject.tag == "Enemy")
+        {
+            other.gameObject.GetComponent<Enemy>().GetDamage(10f);
+            Destroy(gameObject);
         }
     }
 
