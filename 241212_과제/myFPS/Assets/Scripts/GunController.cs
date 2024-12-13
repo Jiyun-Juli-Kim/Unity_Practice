@@ -4,27 +4,55 @@ using UnityEngine;
 
 public class GunController : MonoBehaviour
 {
-    [SerializeField] private float _bulletSpeed;
+    // [SerializeField] private float _bulletSpeed;
     [SerializeField] private Transform _muzzlePoint;
 
-    [SerializeField] GameObject _bulletPrefab;
+    // [SerializeField] GameObject _bulletPrefab;
+    [Range(1,20)]
+    [SerializeField] float _rayLength;
 
     private void Update()
     {
-        BulletShoot();
+        BulletShoot2();
     }
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay(_muzzlePoint.position, _muzzlePoint.forward* _rayLength);
+    }
 
-
-    private void BulletShoot()
+    private void BulletShoot2()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            GameObject bullet = Instantiate(_bulletPrefab, _muzzlePoint.position, _muzzlePoint.rotation);
-            bullet.GetComponent<Rigidbody>().AddForce(_muzzlePoint.forward *bullet.GetComponent<Bullet>().SetSpeed(), ForceMode.Impulse);
-            Destroy(bullet, 8f); 
+            Ray ray = new Ray(_muzzlePoint.position, _muzzlePoint.forward);
+            RaycastHit hit;
+            Debug.Log("ray");
+
+            if (Physics.Raycast(ray, out hit, _rayLength))
+            {
+                Debug.Log("ray2");
+
+                if (hit.collider.tag == "Enemy")
+                {
+                    hit.collider.GetComponent<Enemy>().GetDamage(10);
+                    Debug.Log("enemy");
+                }
+            }
         }
+       
     }
+
+    //private void BulletShoot()
+    //{
+    //    if (Input.GetMouseButtonDown(0))
+    //    {
+    //        GameObject bullet = Instantiate(_bulletPrefab, _muzzlePoint.position, _muzzlePoint.rotation);
+    //        bullet.GetComponent<Rigidbody>().AddForce(_muzzlePoint.forward *bullet.GetComponent<Bullet>().SetSpeed(), ForceMode.Impulse);
+    //        Destroy(bullet, 8f); 
+    //    }
+    //}
 
 
 }

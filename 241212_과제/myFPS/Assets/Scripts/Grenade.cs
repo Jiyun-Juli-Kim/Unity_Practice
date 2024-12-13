@@ -23,6 +23,7 @@ public class Grenade : MonoBehaviour
         if (other.gameObject.tag == "Ground")
         {
             Destroy(gameObject, 3f);
+            Debug.Log("Collision");
         }
     }
 
@@ -54,10 +55,16 @@ public class Grenade : MonoBehaviour
 
     private void Explode()
     {
-        Destroy(gameObject);
-        if (isDetected)
+        Collider[] colliders = Physics.OverlapSphere(transform.position, 10);
+
+        for (int i = 0; i < colliders.Length; i++)
         {
-            _target.GetComponent<Enemy>().GetDamage(20f);
+            if (colliders[i].tag == "Enemy")
+            {
+                colliders[i].GetComponent<Enemy>().GetDamage(20);
+            }
         }
+
+        Destroy(gameObject);
     }
 }
