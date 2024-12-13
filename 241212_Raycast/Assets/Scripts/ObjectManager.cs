@@ -23,17 +23,27 @@ public class ObjectManager : MonoBehaviour
         TryGetObjHandle();
     }
 
+    private void OnDrawGizmos()
+    {
+        if (Input.GetMouseButton(0))
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawRay(_ray.origin, _ray.direction * 20);
+        }
+    }
+
     private void Init()
     {
         _cam = Camera.main;
 
         CreateObj(_characterPrefab).name = "Kim";
+
+        CreateObj(_characterPrefab).name = "Lee";
+
+        CreateObj(_characterPrefab).name = "Park";
+    }
     
-    CreateObj(_characterPrefab).name = "Lee";
-    
-    CreateObj(_characterPrefab).name = "Park";
-    
-}
+
 
     private GameObject CreateObj(GameObject prefab)
     {
@@ -59,7 +69,7 @@ public class ObjectManager : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             _ray = _cam.ScreenPointToRay(Input.mousePosition);
-            Raycasthit Hit;
+            RaycastHit hit;
 
             if (Physics.Raycast(_ray, out hit))
             {

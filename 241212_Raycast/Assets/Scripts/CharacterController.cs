@@ -8,6 +8,7 @@ public class CharacterController : MonoBehaviour
     [SerializeField] private float _rotateSpeed;
     [SerializeField] private float _detectSightDistance;
 
+    private Ray _ray; // 재사용하기 위해 필드로 선언 
     private Rigidbody _rigidbody;
     public bool IsSelect;
 
@@ -25,6 +26,15 @@ public class CharacterController : MonoBehaviour
         }
     }
 
+    private void OnDrawGizmos()
+    {
+        if (IsSelect)
+        { 
+            Gizmos.color = Color.red;
+            // 시작점, 방향과 거리 
+            Gizmos.DrawRay(_ray.origin, _ray.direction * _detectSightDistance);
+        }
+    }
     private void Init()
     {
         _rigidbody = GetComponent<Rigidbody>();
@@ -53,7 +63,7 @@ public class CharacterController : MonoBehaviour
     {
         Vector3 dir = Vector3.zero;
         dir.x = Input.GetAxisRaw("Horizontal");
-        dir.x = Input.GetAxisRaw("Vertical");
+        dir.z = Input.GetAxisRaw("Vertical");
         return dir.normalized;
     }
 
@@ -61,11 +71,11 @@ public class CharacterController : MonoBehaviour
     private void DetectObjectInFront()
     {
         // Ray는 시작점과 방향을 갖는다 
-        Ray ray = new Ray(transform.position, transform.forward * _detectSightDistance);
+        _ray = new Ray(transform.position, transform.forward * _detectSightDistance);
         RaycastHit hit;
 
         // 지정거리 내에서 Ray에 충돌하는 오브젝트를 RaycastHit에 담아두고 true를 반환할 것
-        if (Physics.Raycast(ray, out hit, _detectSightDistance))
+        if (Physics.Raycast(_ray, out hit, _detectSightDistance))
         {
             Debug.Log($"{name} : {hit.transform.name} 발견!");
         }
