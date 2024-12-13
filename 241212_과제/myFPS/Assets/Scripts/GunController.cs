@@ -28,16 +28,12 @@ public class GunController : MonoBehaviour
         {
             Ray ray = new Ray(_muzzlePoint.position, _muzzlePoint.forward);
             RaycastHit hit;
-            Debug.Log("ray");
 
             if (Physics.Raycast(ray, out hit, _rayLength))
             {
-                Debug.Log("ray2");
-
                 if (hit.collider.tag == "Enemy")
                 {
                     hit.collider.GetComponent<Enemy>().GetDamage(10);
-                    Debug.Log("enemy");
                 }
             }
         }

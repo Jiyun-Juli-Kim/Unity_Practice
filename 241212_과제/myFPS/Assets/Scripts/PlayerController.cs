@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _interpolation;
     private Rigidbody _rb;
 
-    private GameObject _weapon;
+    public static GameObject weapon;
     [SerializeField] private Transform _weaponPos;
 
     [SerializeField] private GameObject _gunPrefab;
@@ -78,33 +78,33 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            if (_weapon != null)
+            if (weapon != null)
             {
-                Destroy(_weapon);
+                Destroy(weapon);
             }
 
-            _weapon = Instantiate(_gunPrefab, _weaponPos.position, _weaponPos.rotation);
+            weapon = Instantiate(_gunPrefab, _weaponPos.position, _weaponPos.rotation);
 
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            if (_weapon != null)
+            if (weapon != null)
             {
-                Destroy(_weapon);
+                Destroy(weapon);
             }
 
-            _weapon = Instantiate(_grenadePrefab, _weaponPos.position, _weaponPos.rotation);
+            weapon = Instantiate(_grenadePrefab, _weaponPos.position, _weaponPos.rotation);
            
         }
     }
 
     private void SetWeaponPosition()
     {
-        if (_weapon != null)
+        if (weapon != null)
         {
-            _weapon.transform.position = _weaponPos.position;
-            _weapon.transform.rotation = _weaponPos.rotation;
+            weapon.transform.position = _weaponPos.position;
+            weapon.transform.rotation = _weaponPos.rotation;
         }
     }
 }

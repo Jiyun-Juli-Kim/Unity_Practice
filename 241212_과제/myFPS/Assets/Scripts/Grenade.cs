@@ -5,57 +5,24 @@ using UnityEngine;
 
 public class Grenade : MonoBehaviour
 {
-    [SerializeField] GameObject _grenadePrefab;
-    [SerializeField] private Transform  _throwPoint;
     [SerializeField] private float _throwForce;
-    private bool isDetected = false;
-    private GameObject _target;
-
-    private Rigidbody _grenadeRb;
-
-    void Update()
-    {
-        Throw();
-    }
 
     private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.tag == "Ground")
         {
-            Destroy(gameObject, 3f);
-            Debug.Log("Collision");
+            Invoke("Explode", 3f);
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    public float SetThrowForce()
     {
-        if (other.tag == "Enemy")
-        {
-            isDetected = true;
-            _target = other.gameObject;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "Enemy")
-        {
-            isDetected = false;
-        }
-    }
-
-    private void Throw()
-    {
-        if (Input.GetMouseButtonDown(0))
-        { 
-            GameObject grenade = Instantiate(_grenadePrefab, _throwPoint.position, _throwPoint.rotation);
-            grenade.GetComponent<Rigidbody>().AddForce(_throwPoint.forward * _throwForce, ForceMode.Impulse);
-        }
+        return _throwForce;
     }
 
     private void Explode()
     {
-        Collider[] colliders = Physics.OverlapSphere(transform.position, 10);
+        Collider[] colliders = Physics.OverlapSphere(transform.position, 20);
 
         for (int i = 0; i < colliders.Length; i++)
         {

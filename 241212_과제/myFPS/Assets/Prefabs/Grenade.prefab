@@ -144,9 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a3cbd9d4c7b4d41a62fa8ce04d255f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _grenadePrefab: {fileID: 6314880676822215938}
-  _throwPoint: {fileID: 3519734331060710085}
-  _throwForce: 70
+  _throwForce: 50
 --- !u!54 &1419444873286130076
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -155,8 +153,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6314880676822215938}
   serializedVersion: 2
-  m_Mass: 5
-  m_Drag: 2
+  m_Mass: 1
+  m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
