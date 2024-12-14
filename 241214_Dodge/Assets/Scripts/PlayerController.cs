@@ -6,10 +6,12 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] float _moveSpeed;
     [SerializeField] float _interpolation;
+    [SerializeField] float _playerHp = 100;
 
     private void Update() 
     {
         PlayerMove();
+        CheckHp();
     }
 
     private void PlayerMove()
@@ -33,4 +35,19 @@ public class PlayerController : MonoBehaviour
         return inputDir.normalized;
     }
 
+    public void GetDamage(float damage)
+    {
+        if (_playerHp > 0)
+        {
+            _playerHp -= damage;
+        }
+    }
+
+    private void CheckHp()
+    {
+        if (_playerHp <= 0)
+        { 
+            Destroy(gameObject);
+        }
+    }
 }
