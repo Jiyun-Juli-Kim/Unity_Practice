@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class CanonController : MonoBehaviour
 {
-    [SerializeField] private bool _isDetected = false;
     [SerializeField] private GameObject _bulletPrefab;
     [SerializeField] private Transform _bulletPoint;
     [SerializeField] private float _cannonInterpolate;
@@ -34,12 +33,14 @@ public class CanonController : MonoBehaviour
         Collider[] colliders = Physics.OverlapSphere(_bulletPoint.position, 10);
         foreach (Collider collider in colliders)
         {
-            if (collider.tag == "Player") 
-            { 
-                _isDetected = true;
-                transform.rotation =
-                    Quaternion.LookRotation(collider.gameObject.transform.position);
-                Debug.Log("적 감지 및 회전");
+            if (collider.tag == "Player")
+            {
+                transform.rotation = Quaternion.Lerp(
+                    transform.rotation,
+                    Quaternion.LookRotation(collider.gameObject.transform.position-transform.position),
+                    _cannonInterpolate * Time.deltaTime
+                    );
+                    // 포탑이... 찌그러져요.........ㅠㅠㅠㅠㅠㅠ
 
                 Attack();
             }

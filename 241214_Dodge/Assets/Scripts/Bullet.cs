@@ -26,7 +26,6 @@ public class Bullet : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             _player = other.gameObject.GetComponent<PlayerController>();
-            Debug.Log(_player);
             _player.GetDamage(_bulletDamage);
         }
         Destroy(gameObject,0.5f);
