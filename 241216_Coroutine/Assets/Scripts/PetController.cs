@@ -7,7 +7,7 @@ public class PetController : MonoBehaviour
     [SerializeField] private PlayerController _player;
     [SerializeField] private float _petSpeed=3f;
 
-    [SerializeField] private float _stopDistance = 1f;
+    [SerializeField] private float _stopDistance = 0.5f;
     private Coroutine _callCoroutine;
     // IEnumerator, Coroutine 타입의 차이?
     public void MoveToPlayer()
@@ -19,8 +19,7 @@ public class PetController : MonoBehaviour
         }
     }
 
-
-
+    
     // 프레임단위로 이동하고, 플레이어 객체와의 거리가 일정 실수 이하가 되면 정지
     private IEnumerator CallCoroutine()
     {
@@ -28,10 +27,9 @@ public class PetController : MonoBehaviour
         {
             if (Vector3.Distance(transform.position, _player.transform.position) <= _stopDistance)
             {
-                Debug.Log("코루틴 작동 중지");
-                StopCoroutine(_callCoroutine);
                 _callCoroutine = null;
-                // yield break를 쓴 이유?
+                Debug.Log("코루틴 작동 중지");
+                yield break;
             }
 
             transform.position = Vector3.MoveTowards(transform.position, 
