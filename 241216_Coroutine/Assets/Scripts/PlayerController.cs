@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     [field: SerializeField] public UnityEvent OnPetCalled { get; private set; } = new();
     // 여기서 field, new의 의미
         
+
     void Update()
     {
         PlayerMove();

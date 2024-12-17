@@ -58,8 +58,8 @@ public class PlayerController : MonoBehaviour
 
         Vector3 rot = transform.rotation.eulerAngles;
         rot.y += mouseX;
-        //rot.x -= mouseY;
-        //rot.x = Mathf.Clamp(rot.x, 0, 20);
+        rot.x -= mouseY;
+        rot.x = Mathf.Clamp(rot.x, -20, 20);
         
         transform.rotation = Quaternion.Euler(rot);
     }
