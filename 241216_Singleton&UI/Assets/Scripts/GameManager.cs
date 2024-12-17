@@ -5,10 +5,10 @@ using UnityEngine.PlayerLoop;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance { get; private set; }
+    public static GameManager Instance { get; private set; }
     public SceneChanger scene { get; private set; }
 
-    [SerializeField] private float _playerHp = 100;
+    [SerializeField] public float PlayerHp = 100;
 
     private void Awake()
     {
@@ -23,14 +23,14 @@ public class GameManager : MonoBehaviour
 
     private void SetSingleton()
     {
-        if (instance != null)
+        if (Instance != null)
         {
-            Destroy(instance);
+            Destroy(Instance);
         }
 
         else
         {
-            instance = this;
+            Instance = this;
             DontDestroyOnLoad(gameObject);
         }
     }

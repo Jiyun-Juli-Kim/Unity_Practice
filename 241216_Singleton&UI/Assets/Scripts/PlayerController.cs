@@ -18,10 +18,32 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    void Update()
+    private void Update()
     {
         PlayerMove();
-        PlayerJump();
+    }
+
+    private void LateUpdate()
+    {
+        if (GameManager.Instance.PlayerHp <= 0)
+        {
+            Destroy(gameObject);
+        }
+
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.tag == "Bullet")
+        {
+            GameManager.Instance.PlayerHp -= 10;
+            Destroy(other.gameObject);
+        }
+        
+        if (other.gameObject.tag == "Enemy")
+        {
+            GameManager.Instance.PlayerHp -= 15;
+        }
     }
 
     private void PlayerMove()
@@ -37,7 +59,8 @@ public class PlayerController : MonoBehaviour
         transform.position += dir * _playerSpeed * Time.deltaTime;
 
         PlayerRotation();
-        
+        PlayerJump();
+
         _playerSpeed = temp;
         
     }

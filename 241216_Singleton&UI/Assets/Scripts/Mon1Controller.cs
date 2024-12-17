@@ -31,10 +31,12 @@ public class Monster1Controller : MonoBehaviour
     private IEnumerator FollowPlayer()
     {
         transform.position = Vector3.Lerp(
-            transform.position, 
-            _playerPos.position, 
+            transform.position,
+            _playerPos.position,
             Time.deltaTime * _mon1Speed
-            );
+        );
+        
+            yield return null;
     }
 
 }
