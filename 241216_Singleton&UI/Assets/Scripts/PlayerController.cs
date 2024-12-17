@@ -47,15 +47,19 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             _rb.AddForce(Vector3.up * _playerJumpForce, ForceMode.Impulse);
-            Debug.Log("Jump");
+            // Debug.Log("Jump");
         }
     }
 
     private void PlayerRotation()
     {
         float mouseX = Input.GetAxis("Mouse X");
+        float mouseY = Input.GetAxis("Mouse Y");
+
         Vector3 rot = transform.rotation.eulerAngles;
         rot.y += mouseX;
+        //rot.x -= mouseY;
+        //rot.x = Mathf.Clamp(rot.x, 0, 20);
         
         transform.rotation = Quaternion.Euler(rot);
     }
