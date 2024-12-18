@@ -5,25 +5,43 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public static GameManager Instance { get; private set; }
+    public SceneChanger sceneChanger { get; private set; }
+
+    [field : SerializeField] public int Score { get; set; }
+
+    [Range(5, 30)] 
+    [SerializeField] public float playTime;
+
+
+    void Awake()
     {
-        
+        Init();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Init()
     {
-        Reload();
+        SetSingleton();
+        sceneChanger = GetComponent<SceneChanger>();
     }
 
-    private void Reload()
+    private void SetSingleton()
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Instance != null)
         {
-            SceneManager.LoadScene("gameScene");
-            Debug.Log("reload");
+            Destroy(gameObject);
         }
+        else
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+    }
+
+    public void Load(int num)
+    {
+        Instance.sceneChanger.Load(num);
+        // Debug.Log("씬 전환 수행");
     }
 
 }

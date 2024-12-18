@@ -27,7 +27,10 @@ public class Bullet : MonoBehaviour
         {
             _player = other.gameObject.GetComponent<PlayerController>();
             _player.GetDamage(_bulletDamage);
+            GameManager.Instance.Score -= 10;
         }
+
+        GameManager.Instance.Score += 5;
         Destroy(gameObject,0.5f);
     }
 
